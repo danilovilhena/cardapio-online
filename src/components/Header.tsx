@@ -22,7 +22,7 @@ const Header = () => {
                         {isOpen ?
                         <span className="badge bg-success">Aberto</span> :
                         <span className="badge bg-danger">Fechado</span>}
-                        <p>{startHour}:00 - {endHour}:00</p>
+                        <p><i className="bi bi-clock"></i> {startHour}:00 - {endHour}:00</p>
                     </div>
                 </section>
             </div>
