@@ -2,7 +2,7 @@ import React from 'react'
 import slug from 'slug'
 import "./MenuSection.scss"
 
-const Header = (props: any) => {
+const MenuSection = (props: any) => {
     let id = slug(props.title)
 
     return (
@@ -12,15 +12,19 @@ const Header = (props: any) => {
                 <i className="bi bi-chevron-down"></i>
             </button>
             <div className="collapse" id={id}>
+                {props.itens.map((el: any) => 
                 <div>
-                    <h3>Combo Brabíssimo</h3>
-                    <p>Burger Brabíssimo + Batata Individual 100g + Refrigerante Lata 350ml</p>
-                    <p>R$44,90</p>
+                    <div>
+                        <h3>{el.name}</h3>
+                        <p>{el.description}</p>
+                        <p>{el.price}</p>
+                    </div>
+                    <img src={el.img} alt={el.name}></img>
                 </div>
-                <img src="https://goentrega.online/tim.php?src=https://goentrega.online/uploads/images/2021/07/egg-4.jpeg&w=180&h=180" alt="Combo Brabíssimo"></img>
+                )}
             </div>
         </section>
     )
 }
 
-export default Header
+export default MenuSection
