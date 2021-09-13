@@ -1,0 +1,28 @@
+.menu-section{
+    width: 90%;
+    margin: 0 auto 2rem auto;
+
+    *{
+        transition: all 0.375s ease-in-out !important;
+    }
+
+    button{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        border-radius: .5rem;
+        padding: .75rem .75rem;
+        box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1);
+
+        &[aria-expanded*=true] {
+            background-color: #95190C;
+            color: #fff;
+
+            i { 
+                color: #fff; 
+                transform: rotate(-180deg); 
+            }
+        }
+    }
+}

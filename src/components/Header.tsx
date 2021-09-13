@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Logo from '../assets/logo.svg'
 import "./Header.scss"
 import "./Header.responsivity.scss"
@@ -22,7 +22,7 @@ const Header = () => {
                         {isOpen ?
                         <span className="badge bg-success">Aberto</span> :
                         <span className="badge bg-danger">Fechado</span>}
-                        <p><i className="bi bi-clock"></i> {startHour}:00 - {endHour}:00</p>
+                        <p><i className="bi bi-clock" role="img" aria-label="Horário de funcionamento"></i> {startHour}:00 - {endHour}:00</p>
                     </div>
                 </section>
             </div>
