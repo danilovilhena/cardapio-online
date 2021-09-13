@@ -1,10 +1,13 @@
 import React from 'react';
+import Header from '../components/Header';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    </div>
+    <>
+      <Header />
+    </>
   );
 }
 

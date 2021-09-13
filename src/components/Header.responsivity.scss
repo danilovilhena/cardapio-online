@@ -1,0 +1,12 @@
+@media (min-width: 800px){
+    header > div{
+        flex-direction: row-reverse;
+        padding: 1rem;
+
+        img{
+            width: 30%;
+            margin-left: 2rem;
+        }
+    }
+    
+}

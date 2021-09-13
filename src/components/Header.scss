@@ -1,0 +1,52 @@
+header{
+    width: 100%;
+    background-color: #95190C;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    
+    > div{
+        max-width: 960px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 0 1.5rem 0;
+
+        img{
+            width: 50%;
+            padding-bottom: 1rem;
+        }
+    
+        section{
+            width: 90%;
+            padding: 1rem 1rem;
+            background-color: #FFF;
+            border-radius: .5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            
+            h2{
+                font-weight: bold;
+            }
+    
+            address, > p{
+                font-size: .875rem;
+                color: rgb(78, 78, 78);
+                margin-bottom: 0.5rem;
+            }
+    
+            div{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: .5rem;
+                
+                span{
+                    font-size: 1rem !important;
+                }
+                p{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
