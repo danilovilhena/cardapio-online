@@ -7,7 +7,13 @@ const Menu = () => {
     const [sections, setSections] = useState([])
 
     useEffect(() => {
-        db.getItems().then(data => setSections(data))
+        db.getItems()
+            .then(unsorted => unsorted.sort((a: any,b: any)=>{
+                if(a.order < b.order) return -1;
+                if(a.order > b.order) return 1;
+                return 0;
+            }))
+            .then(data => setSections(data))
     }, [])
 
     return (
