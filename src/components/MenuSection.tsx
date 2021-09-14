@@ -1,11 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState } from 'react'
 import slug from 'slug'
-import Modal from './Modal'
 import "./MenuSection.scss"
 
 const MenuSection = (props: any) => {
-    let portal = (document.getElementById('overlay') as HTMLElement)
+    let [currentItem, setCurrentItem] = useState({
+        description: "Default description",
+        img: "https://via.placeholder.com/150",
+        name: "Default title",
+        price: "R$00,00"
+
+    })
     let id = slug(props.title)
 
     return (
@@ -15,18 +19,28 @@ const MenuSection = (props: any) => {
                 <i className="bi bi-chevron-down"></i>
             </button>
             <div className="collapse" id={id}>
-                {props.items.map((el: any) => 
-                <div key={slug(el.name)} data-bs-toggle="modal" data-bs-target="#exampleModal">
+                {props.items.map((item: any) => 
+                <div key={slug(item.name)} data-bs-toggle="offcanvas" data-bs-target="#offcanvas" onClick={() => setCurrentItem(item)} aria-controls="offcanvas">
                     <div>
-                        <h3>{el.name}</h3>
-                        <p>{el.description}</p>
-                        <p>{el.price}</p>
+                        <h3>{item.name}</h3>
+                        <p>{item.description}</p>
+                        <p>{item.price}</p>
                     </div>
-                    <img src={el.img} alt={el.name}></img>
+                    <img src={item.img} alt={item.name}></img>
                 </div>
                 )}
             </div>
-            {ReactDOM.createPortal(<Modal />, portal)}
+            {/* Offcanvas */}
+            <div className="offcanvas offcanvas-bottom" tabIndex={-1} id="offcanvas" aria-labelledby="offcanvasLabel">
+                <div className="offcanvas-header">
+                    <h5 className="offcanvas-title" id="offcanvasLabel">{currentItem.name}</h5>
+                    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                </div>
+                <div className="offcanvas-body small">
+                    <p>{currentItem.description}</p>
+                    <p>{currentItem.price}</p>
+                </div>
+            </div>
             
         </section>
     )
