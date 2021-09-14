@@ -5,3 +5,7 @@
 body > * {
     margin: auto;
 }
+
+body *{
+    transition: all 0.375s ease-in-out !important;
+}

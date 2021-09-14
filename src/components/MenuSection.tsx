@@ -1,8 +1,11 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import slug from 'slug'
+import Modal from './Modal'
 import "./MenuSection.scss"
 
 const MenuSection = (props: any) => {
+    let portal = (document.getElementById('overlay') as HTMLElement)
     let id = slug(props.title)
 
     return (
@@ -13,7 +16,7 @@ const MenuSection = (props: any) => {
             </button>
             <div className="collapse" id={id}>
                 {props.items.map((el: any) => 
-                <div key={slug(el.name)}>
+                <div key={slug(el.name)} data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <div>
                         <h3>{el.name}</h3>
                         <p>{el.description}</p>
@@ -23,6 +26,8 @@ const MenuSection = (props: any) => {
                 </div>
                 )}
             </div>
+            {ReactDOM.createPortal(<Modal />, portal)}
+            
         </section>
     )
 }
