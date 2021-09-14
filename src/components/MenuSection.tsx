@@ -12,8 +12,8 @@ const MenuSection = (props: any) => {
                 <i className="bi bi-chevron-down"></i>
             </button>
             <div className="collapse" id={id}>
-                {props.itens.map((el: any) => 
-                <div>
+                {props.items.map((el: any) => 
+                <div key={slug(el.name)}>
                     <div>
                         <h3>{el.name}</h3>
                         <p>{el.description}</p>
