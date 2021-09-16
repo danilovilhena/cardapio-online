@@ -111,11 +111,9 @@
             padding-bottom: 2rem;
 
             img{
-                flex-grow: 1;
                 align-self: center;
-                object-fit: cover;
-                width: max-content;
-                max-width: 18rem;
+                width: 90%;
+                max-width: 20rem;
                 margin-bottom: 2rem;
             }
             p{
@@ -141,6 +139,7 @@
             margin-bottom: 1rem;
 
             .btn-group{
+                height: 100%;
                 font-size: 1rem;
                 align-items: center;
                 border: 1px solid #ccc;
@@ -152,8 +151,8 @@
 
                 button{
                     box-shadow: none;
-                    padding-top: 0;
-                    padding-bottom: 0;
+                    padding-top: .25rem;
+                    padding-bottom: .25rem;
                     font-size: 1.5rem;
                     font-weight: 500;
                     color: #95190C;

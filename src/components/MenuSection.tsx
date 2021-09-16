@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import slug from 'slug'
 import order from '../services/order'
 import "./MenuSection.scss"
+import "./MenuSection.responsivity.scss"
 
 const MenuSection = (props: any) => {
     const id = slug(props.title)
@@ -14,18 +15,21 @@ const MenuSection = (props: any) => {
 
     })
     
-    document.addEventListener('show.bs.offcanvas', () => { 
-        if(order.getItem(currentItem.name))
-            setAmount(order.getItem(currentItem.name).amount)
-        else
-            setAmount(1) 
-    })
-
     const realBR = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
 
     const addItem = () => {
         order.addItem(currentItem.name, currentItem.price, amount);
     }
+
+    useEffect(() => {
+        document.getElementById('offcanvas')!.addEventListener('show.bs.offcanvas', () => { 
+            if(order.getItem(currentItem.name))
+                setAmount(order.getItem(currentItem.name).amount)
+            else
+                setAmount(1) 
+        })
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <section className="menu-section">

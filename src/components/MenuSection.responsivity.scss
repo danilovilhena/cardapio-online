@@ -1,0 +1,9 @@
+@media (max-width: 335px){
+    #add-button {
+        justify-content: center;
+        
+        span:last-of-type{
+            display: none;
+        }
+    }
+}
