@@ -3,14 +3,22 @@ import slug from 'slug'
 import "./MenuSection.scss"
 
 const MenuSection = (props: any) => {
-    let [currentItem, setCurrentItem] = useState({
+    const id = slug(props.title)
+    const [amount, setAmount] = useState(1)
+    const [currentItem, setCurrentItem] = useState({
         description: "Default description",
         img: "https://via.placeholder.com/150",
         name: "Default title",
-        price: "R$00,00"
+        price: 0
 
     })
-    let id = slug(props.title)
+    
+    document.addEventListener('show.bs.offcanvas', () => { setAmount(1) })
+
+    const realBR = Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
 
     return (
         <section className="menu-section">
@@ -24,14 +32,13 @@ const MenuSection = (props: any) => {
                     <div>
                         <h3>{item.name}</h3>
                         <p>{item.description}</p>
-                        <p>{item.price}</p>
+                        <p>{realBR.format(item.price)}</p>
                     </div>
                     <img src={item.img} alt={item.name}></img>
                 </div>
                 )}
             </div>
             {/* Offcanvas */}
-            {/* TODO: Estilizar esse offcanvas */}
             <div className="offcanvas offcanvas-bottom" tabIndex={-1} id="offcanvas" aria-labelledby="offcanvasLabel">
                 <div className="offcanvas-header">
                     <h5 className="offcanvas-title" id="offcanvasLabel">{currentItem.name}</h5>
@@ -42,17 +49,17 @@ const MenuSection = (props: any) => {
                 <div className="offcanvas-body small">
                     <img src={currentItem.img} alt={currentItem.name}></img>
                     <p>{currentItem.description}</p>
-                    <p>{currentItem.price}</p>
+                    <p>{realBR.format(currentItem.price)}</p>
 
                     <div className="buttons">
                         <div className="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" className="btn">-</button>
-                            <span>1</span>
-                            <button type="button" className="btn">+</button>
+                            <button type="button" className="btn" disabled={amount === 1} onClick={() => {setAmount(amount-1)}}>-</button>
+                            <span>{amount}</span>
+                            <button type="button" className="btn" onClick={() => {setAmount(amount+1)}}>+</button>
                         </div>
                         <button id="add-button" className="btn">
                             <span>Adicionar</span>
-                            <span>{currentItem.price}</span>
+                            <span>{realBR.format(currentItem.price * amount)}</span>
                         </button>
                     </div>
                 </div>
