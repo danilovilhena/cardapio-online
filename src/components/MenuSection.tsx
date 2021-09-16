@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import slug from 'slug'
+import order from '../services/order'
 import "./MenuSection.scss"
 
 const MenuSection = (props: any) => {
@@ -13,12 +14,15 @@ const MenuSection = (props: any) => {
 
     })
     
-    document.addEventListener('show.bs.offcanvas', () => { setAmount(1) })
-
-    const realBR = Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL"
+    document.addEventListener('show.bs.offcanvas', () => { 
+        setAmount(order.getItem(currentItem.name).amount || 1) 
     })
+
+    const realBR = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
+
+    const addItem = () => {
+        order.addItem(currentItem.name, currentItem.price, amount);
+    }
 
     return (
         <section className="menu-section">
@@ -50,19 +54,18 @@ const MenuSection = (props: any) => {
                     <img src={currentItem.img} alt={currentItem.name}></img>
                     <p>{currentItem.description}</p>
                     <p>{realBR.format(currentItem.price)}</p>
-
-                    <div className="buttons">
+                </div>
+                <div className="buttons">
                         <div className="btn-group" role="group" aria-label="Basic example">
                             <button type="button" className="btn" disabled={amount === 1} onClick={() => {setAmount(amount-1)}}>-</button>
                             <span>{amount}</span>
                             <button type="button" className="btn" onClick={() => {setAmount(amount+1)}}>+</button>
                         </div>
-                        <button id="add-button" className="btn">
+                        <button id="add-button" className="btn" data-bs-dismiss="offcanvas" onClick={() => {addItem()}}>
                             <span>Adicionar</span>
                             <span>{realBR.format(currentItem.price * amount)}</span>
                         </button>
                     </div>
-                </div>
             </div>
             
         </section>
