@@ -15,7 +15,10 @@ const MenuSection = (props: any) => {
     })
     
     document.addEventListener('show.bs.offcanvas', () => { 
-        setAmount(order.getItem(currentItem.name).amount || 1) 
+        if(order.getItem(currentItem.name))
+            setAmount(order.getItem(currentItem.name).amount)
+        else
+            setAmount(1) 
     })
 
     const realBR = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
