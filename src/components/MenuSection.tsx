@@ -31,14 +31,30 @@ const MenuSection = (props: any) => {
                 )}
             </div>
             {/* Offcanvas */}
+            {/* TODO: Estilizar esse offcanvas */}
             <div className="offcanvas offcanvas-bottom" tabIndex={-1} id="offcanvas" aria-labelledby="offcanvasLabel">
                 <div className="offcanvas-header">
                     <h5 className="offcanvas-title" id="offcanvasLabel">{currentItem.name}</h5>
-                    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+                    <button className="btn rounded-btn" data-bs-dismiss="offcanvas" aria-label="Fechar">
+                        <i className="bi bi-chevron-down"></i>
+                    </button>
                 </div>
                 <div className="offcanvas-body small">
+                    <img src={currentItem.img} alt={currentItem.name}></img>
                     <p>{currentItem.description}</p>
                     <p>{currentItem.price}</p>
+
+                    <div className="buttons">
+                        <div className="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" className="btn">-</button>
+                            <span>1</span>
+                            <button type="button" className="btn">+</button>
+                        </div>
+                        <button id="add-button" className="btn">
+                            <span>Adicionar</span>
+                            <span>{currentItem.price}</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             

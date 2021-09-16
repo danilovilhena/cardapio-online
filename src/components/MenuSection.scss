@@ -71,4 +71,99 @@
             box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1);
         }
     }
+
+    .offcanvas{
+        height: fit-content;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+
+        .offcanvas-header{
+            margin-top: 0;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: none;
+            width: 100%;
+            padding: 1rem;
+
+            h5{
+                font-weight: bold;
+                margin: .5rem 0;
+            }
+            .rounded-btn{
+                width: 2.5rem;
+                height: 2.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 100%;
+                margin-left: 1rem;
+                background-color: #efefef;
+            }
+        }
+        .offcanvas-body{
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            padding-bottom: 2rem;
+
+            img{
+                width: 90%;
+                align-self: center;
+                max-width: 18rem;
+                margin-bottom: 2rem;
+            }
+            p{
+                font-size: .875rem;
+                margin: 0 1.25rem;
+
+                &:first-of-type{
+                    margin-bottom: .5rem;
+                }
+
+                &:last-of-type{
+                    font-size: 1.125rem;
+                }
+            }
+            
+            .buttons{
+                width: 100%;
+                padding: 0 1rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-self: flex-end;
+                margin-top: 15%;
+
+                .btn-group{
+                    font-size: 1rem;
+                    align-items: center;
+                    border: 1px solid #ccc;
+                    border-radius: .5rem;
+
+                    span{
+                        padding: 0 1rem;
+                    }
+
+                    button{
+                        box-shadow: none;
+                        padding-top: 0;
+                        padding-bottom: 0;
+                        font-size: 1.5rem;
+                        font-weight: 500;
+                        color: #95190C;
+                    }
+                }
+
+                #add-button{
+                    background-color: #95190C;
+                    color: #fff;
+                    font-size: 1rem;
+                    margin-left: 1rem;
+                }
+            }
+        }
+    }
 }
