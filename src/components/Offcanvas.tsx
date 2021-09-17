@@ -7,14 +7,11 @@ const Offcanvas = (props: any) => {
     const real = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
     const [amount, setAmount] = useState(1)
     useEffect(() => {
-        document.getElementById('offcanvas')!.addEventListener('show.bs.offcanvas', () => { 
-            if(order.getItem(props.currentItem.name))
-                setAmount(order.getItem(props.currentItem.name).amount)
-            else
-                setAmount(1) 
-        })
-        // eslint-disable-next-line
-    }, [])
+        if(order.getItem(props.currentItem.name))
+            setAmount(order.getItem(props.currentItem.name).amount)
+        else
+            setAmount(1) 
+    }, [props.currentItem.name])
 
     return (
     <div className="offcanvas offcanvas-bottom" tabIndex={-1} id="offcanvas" aria-labelledby="offcanvasLabel">
