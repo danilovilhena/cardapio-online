@@ -11,7 +11,7 @@ const Offcanvas = (props: any) => {
             setAmount(props.order.items[props.currentItem.name].amount)
         else
             setAmount(1) 
-    }, [props.order.items, props.currentItem])
+    }, [props.order, props.currentItem])
 
     return (
     <div className="offcanvas offcanvas-bottom" tabIndex={-1} id="offcanvas" aria-labelledby="offcanvasLabel">

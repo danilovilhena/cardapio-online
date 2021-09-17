@@ -2,11 +2,11 @@ import React from "react"
 import "./CartButton.scss"
 
 
-const CartButton = () => {
+const CartButton = (props: any) => {
     return (
-        <button className="btn" id="cart-btn">
+        <button className={props.visible ? "btn" : "btn d-none"} id="cart-btn">
             <i className="bi bi-bag"></i>
-            <span>Ver pedido</span>
+            <span>Ver pedido ({(props.amount)})</span>
         </button>
     )
 }

@@ -16,23 +16,17 @@ const Menu = () => {
         price: 0
     })
 
-    const updateTotals = (obj: any) => {
-        let amount = 0
-        let price = 0
-        Object.keys(obj.items).forEach((el: any) => {
-            amount += obj.items[el].amount
-            price += obj.items[el].price * obj.items[el].amount
-        })
-
-        obj["amount"] = amount
-        obj["price"] = price
-    }
-
     const addItem = (amount: number) => {
-        setOrder((prevState: any) => {
-            let obj = prevState
+        setOrder((prev: any) => {
+            let obj = {...prev}
+            let totalAmount = 0, totalPrice = 0
             obj.items[currentItem.name] = {price: currentItem.price, amount}
-            updateTotals(obj)
+            Object.keys(obj.items).forEach((el: any) => {
+                totalAmount += obj.items[el].amount
+                totalPrice += obj.items[el].price * obj.items[el].amount
+            })
+            obj["amount"] = totalAmount
+            obj["price"] = totalPrice
             return obj
         })
     }
@@ -51,7 +45,7 @@ const Menu = () => {
         <main>
             {sections.map((el: any) => <MenuSection title={el.title} items={el.items} key={el.key} setCurrentItem={setCurrentItem}/>)}
             {ReactDOM.createPortal(<Offcanvas addItem={addItem} currentItem={currentItem} order={order}/>, document.querySelector('#overlay')!)}
-            {false && <CartButton />}
+            <CartButton amount={order.amount} visible={order.amount > 0}/>
         </main>
     )
 }
