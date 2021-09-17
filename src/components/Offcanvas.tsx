@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import order from '../services/order';
 import "./Offcanvas.scss"
 import "./Offcanvas.responsivity.scss"
 
 const Offcanvas = (props: any) => {
     const real = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
     const [amount, setAmount] = useState(1)
+
     useEffect(() => {
-        if(order.getItem(props.currentItem.name))
-            setAmount(order.getItem(props.currentItem.name).amount)
+        if(props.order.items[props.currentItem.name])
+            setAmount(props.order.items[props.currentItem.name].amount)
         else
             setAmount(1) 
-    }, [props.currentItem.name])
+    }, [props.order.items, props.currentItem])
 
     return (
     <div className="offcanvas offcanvas-bottom" tabIndex={-1} id="offcanvas" aria-labelledby="offcanvasLabel">

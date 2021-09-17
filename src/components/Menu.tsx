@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import MenuSection from './MenuSection'
 import Offcanvas from './Offcanvas'
 import db from '../services/database';
-import order from '../services/order';
 import './Menu.scss';
+import CartButton from './CartButton';
 
 const Menu = () => {
     const [sections, setSections] = useState([])
+    const [order, setOrder] = useState({"amount": 0, "price": 0, "items": {}})
     const [currentItem, setCurrentItem] = useState({
         description: "Default description",
         img: "https://via.placeholder.com/150",
@@ -15,8 +16,26 @@ const Menu = () => {
         price: 0
     })
 
+    const updateTotals = (obj: any) => {
+        let totalAmount = 0
+        let totalPrice = 0
+        Object.keys(obj.items).forEach((el: any) => {
+            totalAmount += obj.items[el].amount
+            totalPrice += obj.items[el].price * obj.items[el].amount
+        })
+        console.log(obj)
+
+        obj["amount"] = totalAmount
+        obj["price"] = totalPrice
+    }
+
     const addItem = (amount: number) => {
-        order.addItem(currentItem.name, currentItem.price, amount);
+        setOrder((prevState: any) => {
+            let obj = prevState
+            obj.items[currentItem.name] = {price: currentItem.price, amount}
+            updateTotals(obj)
+            return obj
+        })
     }
 
     useEffect(() => {
@@ -32,7 +51,8 @@ const Menu = () => {
     return (
         <main>
             {sections.map((el: any) => <MenuSection title={el.title} items={el.items} key={el.key} setCurrentItem={setCurrentItem}/>)}
-            {ReactDOM.createPortal(<Offcanvas addItem={addItem} currentItem={currentItem}/>, document.querySelector('#overlay')!)}
+            {ReactDOM.createPortal(<Offcanvas addItem={addItem} currentItem={currentItem} order={order}/>, document.querySelector('#overlay')!)}
+            {false && <CartButton />}
         </main>
     )
 }
