@@ -17,16 +17,15 @@ const Menu = () => {
     })
 
     const updateTotals = (obj: any) => {
-        let totalAmount = 0
-        let totalPrice = 0
+        let amount = 0
+        let price = 0
         Object.keys(obj.items).forEach((el: any) => {
-            totalAmount += obj.items[el].amount
-            totalPrice += obj.items[el].price * obj.items[el].amount
+            amount += obj.items[el].amount
+            price += obj.items[el].price * obj.items[el].amount
         })
-        console.log(obj)
 
-        obj["amount"] = totalAmount
-        obj["price"] = totalPrice
+        obj["amount"] = amount
+        obj["price"] = price
     }
 
     const addItem = (amount: number) => {
