@@ -1,0 +1,116 @@
+.offcanvas#offcanvas{
+    height: 95vh;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    *{
+        transition: all 0.375s ease-in-out !important;
+    }
+
+    .offcanvas-header{
+        margin-top: 0;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: none;
+        width: 100%;
+        padding: 1rem 1.25rem;
+
+        h5{
+            font-weight: bold;
+            margin: .5rem 0;
+        }
+        .rounded-btn{
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            margin-left: 1rem;
+            background-color: #efefef;
+        }
+    }
+
+    .offcanvas-body{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        border-bottom: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        padding-bottom: 2rem;
+
+        img{
+            align-self: center;
+            object-fit: contain;
+            width: 90%;
+            max-width: 20rem;
+            margin-bottom: 2rem;
+            border-radius: .25rem;
+            box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1);
+        }
+        p{
+            font-size: .875rem;
+            margin: 0 1.25rem;
+
+            &:first-of-type{
+                margin-bottom: .5rem;
+                font-weight: 500;
+            }
+
+            &:last-of-type{
+                font-size: 1.125rem;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .buttons{
+        width: 100%;
+        padding: 0 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-self: flex-end;
+        margin-bottom: 1rem;
+
+        .btn-group{
+            height: 100%;
+            font-size: 1rem;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: .5rem;
+
+            span{
+                padding: 0 1rem;
+            }
+
+            button{
+                box-shadow: none;
+                padding-top: .25rem;
+                padding-bottom: .25rem;
+                font-size: 1.5rem;
+                font-weight: 500;
+                color: #95190C;
+
+                &:disabled{
+                    color: #666666;
+                }
+            }
+        }
+
+        #add-button{
+            background-color: #95190C;
+            color: #fff;
+            font-size: 1rem;
+            margin-left: 1rem;
+            font-weight: 500;
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}

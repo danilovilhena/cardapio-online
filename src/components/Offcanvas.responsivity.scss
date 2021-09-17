@@ -1,6 +1,7 @@
 @media (max-width: 335px){
-    #add-button {
+    .offcanvas#offcanvas .buttons #add-button {
         justify-content: center;
+        align-items: center;
         
         span:last-of-type{
             display: none;
