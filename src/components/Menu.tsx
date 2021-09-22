@@ -5,6 +5,7 @@ import Offcanvas from './Offcanvas'
 import db from '../services/database';
 import '../styles/Menu.scss';
 import CartButton from './CartButton';
+import CartOffcanvas from './CartOffcanvas';
 
 const Menu = () => {
     const [sections, setSections] = useState([])
@@ -45,6 +46,7 @@ const Menu = () => {
         <main>
             {sections.map((el: any) => <MenuSection title={el.title} items={el.items} key={el.key} setCurrentItem={setCurrentItem}/>)}
             {ReactDOM.createPortal(<Offcanvas addItem={addItem} currentItem={currentItem} order={order}/>, document.querySelector('#overlay')!)}
+            {ReactDOM.createPortal(<CartOffcanvas />, document.querySelector('#cart-overlay')!)}
             <CartButton amount={order.amount} visible={order.amount > 0}/>
         </main>
     )
