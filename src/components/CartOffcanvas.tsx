@@ -1,8 +1,7 @@
 import React from 'react'
 import "../styles/CartOffcanvas.scss"
 
-const CartOffcanvas = () => {
-    // const real = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
+const CartOffcanvas = (props: any) => {
 
     return (
     <div className="offcanvas offcanvas-bottom" tabIndex={-1} id="cart-offcanvas" aria-labelledby="cartOffcanvasLabel">

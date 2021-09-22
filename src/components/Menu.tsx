@@ -21,7 +21,11 @@ const Menu = () => {
         setOrder((prev: any) => {
             let obj = {...prev}
             let totalAmount = 0, totalPrice = 0
-            obj.items[currentItem.name] = {price: currentItem.price, amount}
+            obj.items[currentItem.name] = {
+                description: currentItem.description, 
+                img: currentItem.img, 
+                price: currentItem.price, 
+                amount}
             Object.keys(obj.items).forEach((el: any) => {
                 totalAmount += obj.items[el].amount
                 totalPrice += obj.items[el].price * obj.items[el].amount
@@ -46,7 +50,7 @@ const Menu = () => {
         <main>
             {sections.map((el: any) => <MenuSection title={el.title} items={el.items} key={el.key} setCurrentItem={setCurrentItem}/>)}
             {ReactDOM.createPortal(<Offcanvas addItem={addItem} currentItem={currentItem} order={order}/>, document.querySelector('#overlay')!)}
-            {ReactDOM.createPortal(<CartOffcanvas />, document.querySelector('#cart-overlay')!)}
+            {ReactDOM.createPortal(<CartOffcanvas order={order}/>, document.querySelector('#cart-overlay')!)}
             <CartButton amount={order.amount} visible={order.amount > 0}/>
         </main>
     )
