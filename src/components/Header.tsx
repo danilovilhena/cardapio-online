@@ -1,7 +1,7 @@
 import React from 'react'
 import Logo from '../assets/logo.svg'
-import "./Header.scss"
-import "./Header.responsivity.scss"
+import "../styles/Header.scss"
+import "../styles/Header.responsivity.scss"
 
 const Header = () => {
     const startHour = 11, endHour = 20

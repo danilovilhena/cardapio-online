@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import MenuSection from './MenuSection'
 import Offcanvas from './Offcanvas'
 import db from '../services/database';
-import './Menu.scss';
+import '../styles/Menu.scss';
 import CartButton from './CartButton';
 
 const Menu = () => {

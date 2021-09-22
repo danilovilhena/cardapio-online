@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import "./Offcanvas.scss"
-import "./Offcanvas.responsivity.scss"
+import "../styles/Offcanvas.scss"
+import "../styles/Offcanvas.responsivity.scss"
 
 const Offcanvas = (props: any) => {
     const real = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
