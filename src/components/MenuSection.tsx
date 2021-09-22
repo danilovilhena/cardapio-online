@@ -1,10 +1,10 @@
 import React from 'react'
 import slug from 'slug'
 import "../styles/MenuSection.scss"
+import MenuItem from './MenuItem'
 
 const MenuSection = (props: any) => {
     const id = slug(props.title)
-    const real = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
 
     return (
         <section className="menu-section">
@@ -14,15 +14,7 @@ const MenuSection = (props: any) => {
             </button>
             <div className="collapse" id={id}>
                 {props.items.map((item: any) => 
-                <div key={slug(item.name)} data-bs-toggle="offcanvas" data-bs-target="#offcanvas" onClick={() => props.setCurrentItem(item)} aria-controls="offcanvas">
-                    <div>
-                        <h3>{item.name}</h3>
-                        <p>{item.description}</p>
-                        <p>{real.format(item.price)}</p>
-                    </div>
-                    <img src={item.img} alt={item.name}></img>
-                </div>
-                )}
+                <MenuItem key={slug(item.name)} item={item} setCurrentItem={props.setCurrentItem} dataBs={"offcanvas"} dataTarget={"#offcanvas"}/>)}
             </div>
         </section>
     )
