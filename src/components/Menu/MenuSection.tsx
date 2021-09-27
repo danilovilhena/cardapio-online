@@ -1,6 +1,6 @@
 import React from 'react'
 import slug from 'slug'
-import "../styles/MenuSection.scss"
+import "../../styles/MenuSection.scss"
 import MenuItem from './MenuItem'
 
 const MenuSection = (props: any) => {

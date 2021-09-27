@@ -1,5 +1,5 @@
 import React from 'react'
-import "../styles/CartOffcanvas.scss"
+import "../../styles/CartOffcanvas.scss"
 
 const CartOffcanvas = (props: any) => {
 

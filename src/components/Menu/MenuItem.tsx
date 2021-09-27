@@ -1,5 +1,5 @@
 import React from 'react'
-import "../styles/MenuItem.scss"
+import "../../styles/MenuItem.scss"
 
 const MenuItem = (props: any) => {
     const real = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})

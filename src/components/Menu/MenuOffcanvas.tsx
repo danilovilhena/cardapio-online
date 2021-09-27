@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import "../styles/Offcanvas.scss"
-import "../styles/Offcanvas.responsivity.scss"
+import "../../styles/MenuOffcanvas.scss"
+import "../../styles/MenuOffcanvas.responsivity.scss"
 
 const Offcanvas = (props: any) => {
     const real = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL"})
     const [amount, setAmount] = useState(1)
+    const [hasItem, setHasItem] = useState(false);
 
     useEffect(() => {
-        if(props.order.items[props.currentItem.name])
+        if(props.order.items[props.currentItem.name]){
             setAmount(props.order.items[props.currentItem.name].amount)
-        else
+            setHasItem(true)
+        }
+        else{
             setAmount(1) 
+            setHasItem(false)
+        }
     }, [props.order, props.currentItem])
 
     return (
@@ -33,7 +38,7 @@ const Offcanvas = (props: any) => {
                     <button type="button" className="btn" onClick={() => {setAmount(amount+1)}}>+</button>
                 </div>
                 <button id="add-button" className="btn" data-bs-dismiss="offcanvas" onClick={() => {props.addItem(amount)}}>
-                    <span>Adicionar</span>
+                    <span>{hasItem ? 'Atualizar' : 'Adicionar'}</span>
                     <span>{real.format(props.currentItem.price * amount)}</span>
                 </button>
             </div>

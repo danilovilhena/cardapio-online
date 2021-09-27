@@ -1,5 +1,5 @@
 import React from "react"
-import "../styles/CartButton.scss"
+import "../../styles/CartButton.scss"
 
 const CartButton = (props: any) => {
     return (

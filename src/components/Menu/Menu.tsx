@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom';
 import MenuSection from './MenuSection'
-import Offcanvas from './Offcanvas'
-import db from '../services/database';
-import '../styles/Menu.scss';
-import CartButton from './CartButton';
-import CartOffcanvas from './CartOffcanvas';
+import MenuOffcanvas from './MenuOffcanvas'
+import db from '../../services/database';
+import '../../styles/Menu.scss';
+import CartButton from '../Cart/CartButton';
+import CartOffcanvas from '../Cart/CartOffcanvas';
 
 const Menu = () => {
     const [sections, setSections] = useState([])
@@ -46,10 +46,12 @@ const Menu = () => {
             .then(data => setSections(data))
     }, [])
 
+    useEffect(() => {console.log(order)}, [order])
+
     return (
         <main>
             {sections.map((el: any) => <MenuSection title={el.title} items={el.items} key={el.key} setCurrentItem={setCurrentItem}/>)}
-            {ReactDOM.createPortal(<Offcanvas addItem={addItem} currentItem={currentItem} order={order}/>, document.querySelector('#overlay')!)}
+            {ReactDOM.createPortal(<MenuOffcanvas addItem={addItem} currentItem={currentItem} order={order}/>, document.querySelector('#overlay')!)}
             {ReactDOM.createPortal(<CartOffcanvas order={order}/>, document.querySelector('#cart-overlay')!)}
             <CartButton amount={order.amount} visible={order.amount > 0}/>
         </main>
