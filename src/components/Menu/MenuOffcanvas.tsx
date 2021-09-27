@@ -32,16 +32,16 @@ const Offcanvas = (props: any) => {
             <p>{real.format(props.currentItem.price)}</p>
         </div>
         <div className="buttons">
-                <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" className="btn" disabled={amount === 1} onClick={() => {setAmount(amount-1)}}>-</button>
-                    <span>{amount}</span>
-                    <button type="button" className="btn" onClick={() => {setAmount(amount+1)}}>+</button>
-                </div>
-                <button id="add-button" className="btn" data-bs-dismiss="offcanvas" onClick={() => {props.addItem(amount)}}>
-                    <span>{hasItem ? 'Atualizar' : 'Adicionar'}</span>
-                    <span>{real.format(props.currentItem.price * amount)}</span>
-                </button>
+            <div className="btn-group" role="group" aria-label="Basic example">
+                <button type="button" className="btn" disabled={amount === 1} onClick={() => {setAmount(amount-1)}}>-</button>
+                <span>{amount}</span>
+                <button type="button" className="btn" onClick={() => {setAmount(amount+1)}}>+</button>
             </div>
+            <button id="add-button" className="btn" data-bs-dismiss="offcanvas" onClick={() => {props.addItem(amount)}}>
+                <span>{hasItem ? 'Atualizar' : 'Adicionar'}</span>
+                <span>{real.format(props.currentItem.price * amount)}</span>
+            </button>
+        </div>
     </div>
     )
 }

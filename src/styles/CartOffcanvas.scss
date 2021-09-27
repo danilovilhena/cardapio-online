@@ -69,35 +69,25 @@
 
     .buttons{
         width: 100%;
-        padding: 0 1rem;
+        padding: 0 1.25rem;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-self: flex-end;
         margin-bottom: 1rem;
 
-        .btn-group{
-            height: 100%;
-            font-size: 1rem;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: .5rem;
+        .total-div {
+            display: flex;
+            flex-direction: column;
 
-            span{
-                padding: 0 1rem;
+            p{
+                margin-bottom: 0;
+                color: #888;
             }
 
-            button{
-                box-shadow: none;
-                padding-top: .25rem;
-                padding-bottom: .25rem;
-                font-size: 1.5rem;
-                font-weight: 500;
-                color: #95190C;
-
-                &:disabled{
-                    color: #666666;
-                }
+            span{
+                font-size: 1.125rem;
+                font-weight: bold;
             }
         }
 
@@ -107,10 +97,11 @@
             font-size: 1rem;
             margin-left: 1rem;
             font-weight: 500;
-            flex: 1;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
     }
 }
