@@ -19,6 +19,10 @@ const CartOffcanvas = (props: any) => {
                 <CartItem key={item} name={item} item={props.order.items[item]} updateItem={props.updateItem} deleteItem={props.deleteItem}/>
             )}
         </div>
+        <div className="observation">
+            <label htmlFor="textarea">Alguma observação?</label>
+            <textarea id="textarea" placeholder="Ex: Tirar a cebola, maionese à parte, etc."></textarea>
+        </div>
         <div className="buttons">
             <div className="total-div">
                 <p>Total</p>
