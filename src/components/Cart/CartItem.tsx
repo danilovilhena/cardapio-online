@@ -24,7 +24,7 @@ const CartItem = (props: any) => {
                     <p>{real.format(props.item.price * props.item.amount)}</p>
                     <div className="btn-group" role="group" aria-label="Basic example">
                         <button type="button" className="btn" onClick={() => {handleAmountChange(false)}}>
-                            {props.item.amount -1 === 0 ? <i className="bi bi-x-circle-fill"></i> : <i>-</i>}
+                            {props.item.amount -1 === 0 ? <i className="bi bi-x-circle"></i> : <i>-</i>}
                         </button>
                             <span>{props.item.amount}</span>
                         <button type="button" className="btn" onClick={() => {handleAmountChange(true)}}>+</button>
