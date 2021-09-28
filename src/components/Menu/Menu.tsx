@@ -17,21 +17,44 @@ const Menu = () => {
         price: 0
     })
 
+    const updateAmountAndPrice = (obj: any) => {
+        let totalAmount = 0, totalPrice = 0
+        Object.keys(obj.items).forEach((el: any) => {
+            totalAmount += obj.items[el].amount
+            totalPrice += obj.items[el].price * obj.items[el].amount
+        })
+        obj["amount"] = totalAmount
+        obj["price"] = totalPrice
+    }
+
     const addItem = (amount: number) => {
         setOrder((prev: any) => {
             let obj = {...prev}
-            let totalAmount = 0, totalPrice = 0
             obj.items[currentItem.name] = {
                 description: currentItem.description, 
                 img: currentItem.img, 
                 price: currentItem.price, 
-                amount}
-            Object.keys(obj.items).forEach((el: any) => {
-                totalAmount += obj.items[el].amount
-                totalPrice += obj.items[el].price * obj.items[el].amount
-            })
-            obj["amount"] = totalAmount
-            obj["price"] = totalPrice
+                amount
+            }
+            updateAmountAndPrice(obj)
+            return obj
+        })
+    }
+
+    const updateItem = (item: string, amount: number) => {
+        setOrder((prev: any) => {
+            let obj = {...prev}
+            obj.items[item].amount = amount
+            updateAmountAndPrice(obj)
+            return obj
+        })
+    }
+
+    const deleteItem = (item: string) => {
+        setOrder((prev: any) => {
+            let obj = {...prev}
+            delete obj.items[item];
+            updateAmountAndPrice(obj)
             return obj
         })
     }
@@ -46,13 +69,11 @@ const Menu = () => {
             .then(data => setSections(data))
     }, [])
 
-    useEffect(() => {console.log(order)}, [order])
-
     return (
         <main>
             {sections.map((el: any) => <MenuSection title={el.title} items={el.items} key={el.key} setCurrentItem={setCurrentItem}/>)}
             {ReactDOM.createPortal(<MenuOffcanvas addItem={addItem} currentItem={currentItem} order={order}/>, document.querySelector('#overlay')!)}
-            {ReactDOM.createPortal(<CartOffcanvas order={order}/>, document.querySelector('#cart-overlay')!)}
+            {ReactDOM.createPortal(<CartOffcanvas order={order} updateItem={updateItem} deleteItem={deleteItem}/>, document.querySelector('#cart-overlay')!)}
             <CartButton amount={order.amount} visible={order.amount > 0}/>
         </main>
     )

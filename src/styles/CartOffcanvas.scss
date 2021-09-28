@@ -38,33 +38,10 @@
         justify-content: flex-start;
         border-bottom: none;
         width: 100%;
-        padding: 0;
+        padding: 0 1rem;
         margin: 0;
         padding-bottom: 2rem;
-
-        img{
-            align-self: center;
-            object-fit: contain;
-            width: 90%;
-            max-width: 20rem;
-            margin-bottom: 2rem;
-            border-radius: .25rem;
-            box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1);
-        }
-        p{
-            font-size: .875rem;
-            margin: 0 1.25rem;
-
-            &:first-of-type{
-                margin-bottom: .5rem;
-                font-weight: 500;
-            }
-
-            &:last-of-type{
-                font-size: 1.125rem;
-                font-weight: 700;
-            }
-        }
+        margin-top: .5rem;
     }
 
     .buttons{

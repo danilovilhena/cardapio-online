@@ -1,4 +1,5 @@
 import React from 'react'
+import CartItem from './CartItem'
 import "../../styles/CartOffcanvas.scss"
 
 const CartOffcanvas = (props: any) => {
@@ -15,10 +16,7 @@ const CartOffcanvas = (props: any) => {
         <div className="offcanvas-body small">
             {props.order.items !== {} && 
             Object.keys(props.order.items).map((item: any) => 
-                <div>
-                    <p>{item}</p>
-                    <p>{real.format(props.order.items[item].price * props.order.items[item].amount)}</p>
-                </div>
+                <CartItem key={item} name={item} item={props.order.items[item]} updateItem={props.updateItem} deleteItem={props.deleteItem}/>
             )}
         </div>
         <div className="buttons">
