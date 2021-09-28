@@ -4,7 +4,7 @@ Cart related:
 [x] Integrate function in offcanvas
 
 Order related:
-[ ] Build message based in the object
+[x] Build message based in the object
 [ ] Send message to Whatsapp
 
 Deploy related:
