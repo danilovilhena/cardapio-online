@@ -7,6 +7,49 @@ const CartOffcanvas = (props: any) => {
     const [step, setStep] = useState(1)
     const [observation, setObservation] = useState('')
 
+    const handleSelect = (event: any) => {
+        if(event.target.value === "1") 
+            event.target.style.setProperty('border', '2px solid red')
+        else
+            event.target.style.removeProperty('border')
+    }
+
+    const handleInput = (event: any) => {
+        if(event.target.value.length < 3) 
+            event.target.style.setProperty('border', '2px solid red')
+        else
+            event.target.style.removeProperty('border')
+    }
+
+    const validateFields = () => {
+        let select = (document.querySelector('.form-select') as HTMLSelectElement)
+        let inputs = (Array.from(document.querySelectorAll('.form-control')) as HTMLInputElement[])
+        let invalidElement
+        let isValid = true
+
+        if(select.value === "1"){
+            select.style.setProperty('border', '2px solid red')
+            isValid = false
+            invalidElement = select
+        }
+        else{
+            select.style.removeProperty('border')
+        }
+
+        inputs.forEach(input => {
+            if(input.value.length < 3){
+                input.style.setProperty('border', '2px solid red')
+                isValid = false
+                invalidElement = input
+            }
+            else{
+                input.style.removeProperty('border')
+            }
+        })
+
+        return [isValid, invalidElement]
+    }
+
     const buildOrder = () => {
         let str = "Pedido selecionado!\n\n"
         str += `*Data:* ${new Date().getDate()}/${('0' + new Date().getMonth()).slice(-2)}\n` 
@@ -25,6 +68,19 @@ const CartOffcanvas = (props: any) => {
         str += `Complemento: ${(document.getElementById('user-complemento') as HTMLInputElement).value}\n\n`
         str += `*Pagamento:* ${(document.getElementById('user-pay') as HTMLSelectElement).value}\n`
         str += `*Total:* ${real.format(props.order.price)}\n`
+        return str
+    }
+
+    const sendOrder = () => {
+        let [isValid, invalidElement] = validateFields()
+        if(isValid){
+            let order = buildOrder()
+            let msg = encodeURIComponent(order)
+            let phone = "551123881110"
+            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        } else{
+            (invalidElement as HTMLElement).focus()
+        }
     }
 
     return (
@@ -62,10 +118,11 @@ const CartOffcanvas = (props: any) => {
         <div className="offcanvas-body small">
             {/* Nome */}
             <label htmlFor="user-name">Nome</label>
-            <input className="form-control" type="text" id="user-name" placeholder="Insira seu nome"></input>
+            <input className="form-control" type="text" id="user-name" placeholder="Insira seu nome" onChange={handleInput}></input>
             {/* Forma de pagamento */}
             <label htmlFor="user-pay">Forma de pagamento</label>
-            <select className="form-select" id="user-pay" aria-label="Forma de pagamento">
+            <select className="form-select" id="user-pay" aria-label="Forma de pagamento" onChange={handleSelect}>
+                <option value="1" defaultValue="true">-</option>
                 <option>Cartão de crédito/débito</option>
                 <option>Dinheiro</option>
                 <option>Pix</option>
@@ -75,26 +132,26 @@ const CartOffcanvas = (props: any) => {
             </div>  
             {/* Rua */}
             <label htmlFor="user-rua">Rua</label>
-            <input className="form-control" type="text" id="user-rua" placeholder="Insira a rua"></input>
+            <input className="form-control" type="text" id="user-rua" placeholder="Insira a rua" onChange={handleInput}></input>
             {/* Cidade */}
             <label htmlFor="user-cidade">Cidade</label>
-            <input className="form-control" type="text" id="user-cidade" placeholder="Insira a cidade"></input>
+            <input className="form-control" type="text" id="user-cidade" placeholder="Insira a cidade" onChange={handleInput}></input>
             {/* Bairro */}
             <label htmlFor="user-bairro">Bairro</label>
-            <input className="form-control" type="text" id="user-bairro" placeholder="Insira o bairro"></input>
+            <input className="form-control" type="text" id="user-bairro" placeholder="Insira o bairro" onChange={handleInput}></input>
             {/* CEP */}
             <label htmlFor="user-cep">CEP</label>
-            <input className="form-control" type="text" id="user-cep" placeholder="Insira o CEP"></input>
+            <input className="form-control" type="number" id="user-cep" placeholder="Insira o CEP" onChange={handleInput}></input>
             {/* Complemento */}
             <label htmlFor="user-complemento">Complemento</label>
-            <input className="form-control" type="text" id="user-complemento" placeholder="Insira um complemento"></input>
+            <input className="form-control" type="text" id="user-complemento" placeholder="Insira um complemento" onChange={handleInput}></input>
         </div>
         <div className="buttons">
             <div className="total-div">
                 <p>Total</p>
                 <span>{real.format(props.order.price)}</span>
             </div>
-            <button id="add-button" className="btn" onClick={() => {buildOrder()}}>Enviar pedido</button>
+            <button id="add-button" className="btn" onClick={() => {sendOrder()}}>Enviar pedido</button>
         </div>
         </>}
     </div>
