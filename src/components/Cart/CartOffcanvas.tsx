@@ -76,7 +76,7 @@ const CartOffcanvas = (props: any) => {
         if(isValid){
             let order = buildOrder()
             let msg = encodeURIComponent(order)
-            let phone = "551123881110"
+            let phone = "559181524870"
             window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
         } else{
             (invalidElement as HTMLElement).focus()
